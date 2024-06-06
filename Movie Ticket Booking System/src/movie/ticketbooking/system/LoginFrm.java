@@ -47,7 +47,7 @@ public class LoginFrm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         createAccountLink = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JPasswordField();
-        loginBack = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -140,8 +140,9 @@ public class LoginFrm extends javax.swing.JFrame {
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 310, 380));
 
-        loginBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/other/loginBack.png"))); // NOI18N
-        getContentPane().add(loginBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 380));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/f98cc52a70dea95af4677e97f984add9.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, -240, 580, 630));
 
         pack();
         setLocationRelativeTo(null);
@@ -159,23 +160,33 @@ public class LoginFrm extends javax.swing.JFrame {
         forgotPasswordLink.setForeground(new Color(235, 16, 42));
     }//GEN-LAST:event_forgotPasswordLinkMouseExited
 
-    private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
-        try {
-            Image loginBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtnHover.png"));
-            loginBtn.setIcon(new ImageIcon(loginBtnHoverImg));
-        } catch (IOException ex) {
-            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_loginBtnMouseEntered
+    //validate fields
+    public boolean validate_info() {
+        String email = emailTextField.getText();
+        String password = String.valueOf(passwordTextField.getPassword());
 
-    private void loginBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseExited
-        try {
-            Image loginBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtn.png"));
-            loginBtn.setIcon(new ImageIcon(loginBtnImg));
-        } catch (IOException ex) {
-            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
+        //check empty fields
+        if (email.trim().equals("") || password.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)", "Empty Field", 2);
+            return false;
+        } else {
+            return true;
         }
-    }//GEN-LAST:event_loginBtnMouseExited
+    }
+
+    private void createAccountLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseExited
+        createAccountLink.setForeground(new Color(235, 16, 42));
+    }//GEN-LAST:event_createAccountLinkMouseExited
+
+    private void createAccountLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseEntered
+        createAccountLink.setForeground(new Color(209, 15, 38));
+    }//GEN-LAST:event_createAccountLinkMouseEntered
+
+    private void createAccountLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseClicked
+        SignupFrm sngFrm = new SignupFrm();
+        sngFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_createAccountLinkMouseClicked
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         if (validate_info()) {
@@ -210,33 +221,23 @@ public class LoginFrm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
-    //validate fields
-    public boolean validate_info() {
-        String email = emailTextField.getText();
-        String password = String.valueOf(passwordTextField.getPassword());
-
-        //check empty fields
-        if (email.trim().equals("") || password.trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill the empty field(s)", "Empty Field", 2);
-            return false;
-        } else {
-            return true;
+    private void loginBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseExited
+        try {
+            Image loginBtnImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtn.png"));
+            loginBtn.setIcon(new ImageIcon(loginBtnImg));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }//GEN-LAST:event_loginBtnMouseExited
 
-    private void createAccountLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseExited
-        createAccountLink.setForeground(new Color(235, 16, 42));
-    }//GEN-LAST:event_createAccountLinkMouseExited
-
-    private void createAccountLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseEntered
-        createAccountLink.setForeground(new Color(209, 15, 38));
-    }//GEN-LAST:event_createAccountLinkMouseEntered
-
-    private void createAccountLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccountLinkMouseClicked
-        SignupFrm sngFrm = new SignupFrm();
-        sngFrm.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_createAccountLinkMouseClicked
+    private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
+        try {
+            Image loginBtnHoverImg = ImageIO.read(getClass().getResource("/movie/ticketbooking/system/assets/components/loginBtnHover.png"));
+            loginBtn.setIcon(new ImageIcon(loginBtnHoverImg));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loginBtnMouseEntered
 
     /**
      * @param args the command line arguments
@@ -274,9 +275,9 @@ public class LoginFrm extends javax.swing.JFrame {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel forgotPasswordLink;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel loginBack;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel login_panel;

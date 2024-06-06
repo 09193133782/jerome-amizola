@@ -146,8 +146,17 @@ public class AdminMainFrm extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(moviesTable);
+        if (moviesTable.getColumnModel().getColumnCount() > 0) {
+            moviesTable.getColumnModel().getColumn(0).setResizable(false);
+            moviesTable.getColumnModel().getColumn(1).setResizable(false);
+            moviesTable.getColumnModel().getColumn(2).setResizable(false);
+            moviesTable.getColumnModel().getColumn(4).setResizable(false);
+            moviesTable.getColumnModel().getColumn(5).setResizable(false);
+            moviesTable.getColumnModel().getColumn(6).setResizable(false);
+            moviesTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
-        manageMoviesPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 640, 230));
+        manageMoviesPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 640, 230));
 
         refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/refreshBtn.png"))); // NOI18N
         refreshBtn.setToolTipText("");

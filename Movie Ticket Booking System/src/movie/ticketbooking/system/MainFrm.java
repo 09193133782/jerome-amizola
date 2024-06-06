@@ -555,7 +555,7 @@ public class MainFrm extends javax.swing.JFrame {
         contentRating.setText((contentRatingValue != null) ? contentRatingValue.toString() : "Unknown");
 
         Object tckPriceValue = model.getValueAt(rowIndex, 6);
-        tckPrice.setText((tckPriceValue != null) ? "Rs. " + tckPriceValue.toString() : "Rs. Unknown");
+        tckPrice.setText((tckPriceValue != null) ? "$. " + tckPriceValue.toString() : "$. Unknown");
 
         Object uriValue = model.getValueAt(rowIndex, 7);
         uri = (uriValue != null) ? uriValue.toString() : "";
@@ -679,20 +679,83 @@ public class MainFrm extends javax.swing.JFrame {
             bookTicket.setVisible(true);
         } else {
             bookTicket.toFront();
-            bookTicket.repaint(); // Ensure the window is refreshed
+            bookTicket.repaint();
         }
     }//GEN-LAST:event_bookNowBtn1ActionPerformed
 
     private void watchTrailerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchTrailerBtn1ActionPerformed
-        openWebpage(uri1);
+   String youtubeUrl = "https://www.youtube.com/watch?v=BTxCrOlgIUs";
+
+    try {
+         URI uri = new URI(youtubeUrl);
+
+        if (Desktop.isDesktopSupported()) {
+           Desktop desktop = Desktop.getDesktop();
+          if (desktop.isSupported(Desktop.Action.BROWSE)) {
+             
+                desktop.browse(uri);
+            } else {
+                System.err.println("Browsing is not supported on this platform.");
+           }
+        } else {
+            System.err.println("Desktop is not supported on this platform.");
+         
+        }
+    } catch (Exception ex) {
+        System.err.println("Error opening YouTube URL: " + ex.getMessage());
+        ex.printStackTrace();
+     
+    }
+
     }//GEN-LAST:event_watchTrailerBtn1ActionPerformed
 
     private void watchTrailerBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchTrailerBtn2ActionPerformed
-        openWebpage(uri2);
+       String youtubeUrl = "https://www.youtube.com/watch?v=HZ7PAyCDwEg";
+    try {
+         URI uri = new URI(youtubeUrl);
+
+        if (Desktop.isDesktopSupported()) {
+           Desktop desktop = Desktop.getDesktop();
+          if (desktop.isSupported(Desktop.Action.BROWSE)) {
+             
+                desktop.browse(uri);
+            } else {
+                System.err.println("Browsing is not supported on this platform.");
+           }
+        } else {
+            System.err.println("Desktop is not supported on this platform.");
+         
+        }
+    } catch (Exception ex) {
+        System.err.println("Error opening YouTube URL: " + ex.getMessage());
+        ex.printStackTrace();
+     
+    }
+
     }//GEN-LAST:event_watchTrailerBtn2ActionPerformed
 
     private void watchTrailerBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchTrailerBtn3ActionPerformed
-        openWebpage(uri3);
+           String youtubeUrl = "https://www.youtube.com/watch?v=lV1OOlGwExM";
+    try {
+         URI uri = new URI(youtubeUrl);
+
+        if (Desktop.isDesktopSupported()) {
+           Desktop desktop = Desktop.getDesktop();
+          if (desktop.isSupported(Desktop.Action.BROWSE)) {
+             
+                desktop.browse(uri);
+            } else {
+                System.err.println("Browsing is not supported on this platform.");
+           }
+        } else {
+            System.err.println("Desktop is not supported on this platform.");
+         
+        }
+    } catch (Exception ex) {
+        System.err.println("Error opening YouTube URL: " + ex.getMessage());
+        ex.printStackTrace();
+     
+    }
     }//GEN-LAST:event_watchTrailerBtn3ActionPerformed
 
     private void bookNowBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowBtn2ActionPerformed

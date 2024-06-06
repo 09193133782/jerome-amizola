@@ -43,7 +43,7 @@ public class InvoiceFrm extends javax.swing.JFrame {
                     noOfTck.setText(String.valueOf(rs.getInt("no_of_tickets")));
                     date.setText(String.valueOf(rs.getDate("booked_date")));
                     showtime.setText(rs.getString("showtime"));
-                    totalAmount.setText("Rs. " + String.valueOf(rs.getInt("total_amount")) + ".00");
+                    totalAmount.setText("$. " + String.valueOf(rs.getInt("total_amount")) + ".00");
                     movieName.setText(rs.getString("movie_title"));
                     screen.setText(rs.getString("screen"));
                 }

@@ -50,7 +50,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             confirmBtn.setEnabled(false);
         }
         noOfTcksLabel.setText("0 Tickets");
-        totalAmountLabel.setText("Rs. 0");
+        totalAmountLabel.setText("$. 0");
     }
 
     public void loadFrameImage() {
@@ -79,7 +79,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
                     contentRatingLabel.setText(rs.getString("content_rating"));
                     descriptionTextArea.setText(rs.getString("description"));
                     screenLabel.setText(rs.getString("screen"));
-                    tckPriceLabel.setText("Rs. " + String.valueOf(rs.getInt("ticket_price")));
+                    tckPriceLabel.setText("$. " + String.valueOf(rs.getInt("ticket_price")));
                     ticketPrice = rs.getInt("ticket_price");
                     movieLabel.setIcon(parsePoster(rs.getBytes("poster")));
                 }
@@ -244,6 +244,8 @@ public class BookTicketsFrm extends javax.swing.JFrame {
         ticketLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ticketLabel.setText("Ticket Price :");
         moviePanel1.add(ticketLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
+
+        tckPriceLabel.setText("&");
         moviePanel1.add(tckPriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, -1, -1));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/icons8_clock_20px.png"))); // NOI18N
@@ -1213,7 +1215,7 @@ public class BookTicketsFrm extends javax.swing.JFrame {
             }
             seatsLabel.setText(str);
             noOfTcksLabel.setText(noOfChecked + " Tickets");
-            totalAmountLabel.setText("Rs: " + totalAmount);
+            totalAmountLabel.setText("$: " + totalAmount);
 
             if (noOfChecked != 0) {
                 confirmBtn.setEnabled(true);

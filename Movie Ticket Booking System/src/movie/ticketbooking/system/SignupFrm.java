@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,7 @@ public class SignupFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         login_panel = new javax.swing.JPanel();
         registerLabel = new javax.swing.JLabel();
         createPasswordLabel = new javax.swing.JLabel();
@@ -64,6 +66,10 @@ public class SignupFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SignUp");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/components/image-500x550.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 550));
 
         login_panel.setBackground(new java.awt.Color(255, 255, 255));
         login_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -153,8 +159,6 @@ public class SignupFrm extends javax.swing.JFrame {
         login_panel.add(createPasswordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 320, 220, 30));
 
         getContentPane().add(login_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 310, 540));
-
-        signupBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movie/ticketbooking/system/assets/other/signupBack.png"))); // NOI18N
         getContentPane().add(signupBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 540));
 
         pack();
@@ -241,26 +245,39 @@ public class SignupFrm extends javax.swing.JFrame {
     }
 
     //Check for duplicate emails
-    public boolean checkEmail(String email) {
-        boolean email_notexists = true;
-        String query = "SELECT COUNT(*) FROM `users` WHERE `email` = ?";
-        try {
-            PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query);
-            pst.setString(1, email);
-            ResultSet rs = pst.executeQuery();
-            rs.next();
-            if (rs.getInt(1) != 0) {
-                email_notexists = false;
-                JOptionPane.showMessageDialog(null, "An account exists by this email, please enter different email.", "Email Duplicate", 2);
+   public boolean checkEmail(String email) {
+    boolean email_notexists = true;
+    String validDomains[] = {"@gmail.com", "@yahoo.com", "@educ.com", "@hotmail.com"};
+    String query = "SELECT COUNT(*) FROM `users` WHERE `email` = ?";
+    try {
+        PreparedStatement pst = DBConnectClass.getConnection().prepareStatement(query);
+        pst.setString(1, email);
+        ResultSet rs = pst.executeQuery();
+        rs.next();
+        if (rs.getInt(1) != 0) {
+            email_notexists = false;
+            JOptionPane.showMessageDialog(null, "An account exists by this email, please enter a different email.", "Email Duplicate", JOptionPane.WARNING_MESSAGE);
+        } else {
+            boolean validDomain = false;
+            for (String domain : validDomains) {
+                if (email.endsWith(domain)) {
+                    validDomain = true;
+                    break;
+                }
             }
-            pst.close();
-            rs.close();
-            DBConnectClass.getConnection().close();
-        } catch (SQLException ex) {
-            Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
+            if (!validDomain) {
+                JOptionPane.showMessageDialog(null, "Invalid email domain. Please use one of the following domains: " + Arrays.toString(validDomains), "Invalid Email", JOptionPane.WARNING_MESSAGE);
+                email_notexists = false;
+            }
         }
-        return email_notexists;
+        pst.close();
+        rs.close();
+        DBConnectClass.getConnection().close();
+    } catch (SQLException ex) {
+        Logger.getLogger(SignupFrm.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return email_notexists;
+}
 
     /**
      * @param args the command line arguments
@@ -302,6 +319,7 @@ public class SignupFrm extends javax.swing.JFrame {
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel fullnameLabel;
     private javax.swing.JTextField fullnameTextField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel login_link;
     private javax.swing.JPanel login_panel;
